@@ -3,8 +3,8 @@
 
 #include <TFT_eSPI.h>
 #include <vector>
-#include <KSFont.h> //한글폰트
-#include <NotoSans.h>
+#include <fonts/KSFont.h>
+#include <fonts/NotoSans.h> 
 #include <esp_log.h>
 
 class TextToSprite
