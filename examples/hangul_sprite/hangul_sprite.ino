@@ -9,10 +9,15 @@ TFT_eSPI tft = TFT_eSPI();
 void setup(void)
 {
   Serial.begin(115200);
+  tft.init();
+  tft.fillScreen(TFT_BLACK);
+  tft.setRotation(1);
+  
+  TextToSprite *ttsprites = new TextToSprite(&tft, "test입니다. 17글자 초과시 다음 스프라이트로 작성됩니다.", 16 * 17, 0);
+  ttsprites->setBackgroundColor(TFT_WHITE);
+  ttsprites->setTextColor(TFT_BLACK); 
   for(int i = 0;; i++){
-    TextToSprite *ttsprites = new TextToSprite(&tft, "test입니다. 17글자 초과시 다음 스프라이트로 작성됩니다.", 16 * 17, 0);
-    ttsprites->setBackgroundColor(BG_COLOR);
-    TFT_eSprite *sprite = ttsprites->getNextSprite(82, START_Y);
+    TFT_eSprite *sprite = ttsprites->getNextSprite(0, 16*i);
     if (sprite != nullptr)
     {
         sprite->pushSprite(0,16*i);
