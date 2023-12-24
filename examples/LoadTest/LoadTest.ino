@@ -16,9 +16,9 @@ void setup() {
 
   sprites = new TFT_eSprite*[7];
   SimgSprite simg(&tft);
-  sprites[0] = simg.load("/1.simg");
+  sprites[0] = simg.load("/chatlog.simg");
   sprites[0]->pushSprite(0,0,simg.TRANS);
-  sprites[1] = simg.load("/2.simg");
-  sprites[1]->pushSprite(50,0);
+  sprites[1] = simg.load("/chatlog.simg");
+  sprites[1]->pushSprite(0,50);
 }
 void loop() {}
