@@ -19,6 +19,10 @@ void TextToSprite::setBackgroundColor(uint16_t color)
 {
     BG_COLOR = color;
 }
+void TextToSprite::setTextColor(uint16_t color)
+{
+    TXT_COLOR = color;
+}
 TFT_eSprite *TextToSprite::getNextSprite(int x, int y)
 {
     TFT_eSprite *sprite = new TFT_eSprite(tft);
@@ -27,7 +31,7 @@ TFT_eSprite *TextToSprite::getNextSprite(int x, int y)
     sprite->createSprite(maxWidth + 16, 16); // 라인 높이 16
     sprite->fillSprite(BG_COLOR);
     sprite->loadFont(NotoSansBold15);
-    sprite->setTextColor(TFT_WHITE, BG_COLOR, 1);
+    sprite->setTextColor(TXT_COLOR, BG_COLOR, 1);
 
     // 처음부터가아닌 currentLineIndex 부터 순회.
 
@@ -46,13 +50,13 @@ TFT_eSprite *TextToSprite::getNextSprite(int x, int y)
             byte c2 = *(byte *)tempChar++;
             byte c3 = *(byte *)tempChar++;
             byte *pFs = getHAN_font(c, c2, c3);
-            sprite->drawBitmap(_x, _y, pFs, 16, 16, TFT_WHITE, 16806);
+            sprite->drawBitmap(_x, _y, pFs, 16, 16, TXT_COLOR, BG_COLOR);
             _x += 16;
             if (delayTime > 0)
             {
-                sprite->fillRect(_x + 3, 0, 8, 16, TFT_WHITE);
+                sprite->fillRect(_x + 3, 0, 8, 16, TXT_COLOR);
                 sprite->pushSprite(x, y);
-                sprite->fillRect(_x + 3, 0, 8, 16, 16806);
+                sprite->fillRect(_x + 3, 0, 8, 16, BG_COLOR);
                 delay(delayTime);
             }
             if (*tempChar == '\0')
@@ -67,9 +71,9 @@ TFT_eSprite *TextToSprite::getNextSprite(int x, int y)
             _x += 8;
             if (delayTime > 0)
             {
-                sprite->fillRect(_x + 3, 0, 8, 16, TFT_WHITE);
+                sprite->fillRect(_x + 3, 0, 8, 16, TXT_COLOR);
                 sprite->pushSprite(x, y);
-                sprite->fillRect(_x + 3, 0, 8, 16, 16806);
+                sprite->fillRect(_x + 3, 0, 8, 16, BG_COLOR);
                 delay(delayTime);
             }
 

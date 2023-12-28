@@ -13,6 +13,7 @@ public:
     TextToSprite(TFT_eSPI *tftDisplay, const String &inputString, int maxWidth, int delayTime = 0);
     ~TextToSprite();
     void setBackgroundColor(uint16_t color);
+    void setTextColor(uint16_t color);
     TFT_eSprite *getNextSprite(int x, int y);
 
 private:
@@ -25,7 +26,8 @@ private:
 
     size_t currentLineIndex;  // 현재 처리 중인 라인 인덱스
     int maxWidth;             // 최대 너비
-    int BG_COLOR = TFT_WHITE; // 배경색
+    int BG_COLOR = TFT_BLACK; // 배경색
+    int TXT_COLOR = TFT_WHITE; // 배경색
     byte HANFontImage[32];
 
     // void matrixPrint(TFT_eSPI *tft, TFT_eSprite *sprite, int tftX, int tftY, char *pChar); // matrixPrint 함수
